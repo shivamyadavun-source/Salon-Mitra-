@@ -1,0 +1,9 @@
+{
+  "name": "Salon Mitra",
+  "short_name": "Salon Mitra",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f4ee",
+  "theme_color": "#171717",
+  "description": "Salon management app for appointments, customers, services and income."
+}
