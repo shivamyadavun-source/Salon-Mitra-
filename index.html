@@ -10,158 +10,168 @@
   --gold:#b58a3a;
   --dark:#171717;
   --bg:#f7f4ee;
-  --card:#fff
+  --card:#fff;
+  --green:#218838;
+  --red:#c62828;
+  --blue:#1565c0;
 }
-
 *{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:Arial,sans-serif;
   background:var(--bg);
-  color:#222
+  color:#222;
 }
-
 header{
   background:var(--dark);
   color:#fff;
   padding:18px;
-  border-bottom:3px solid var(--gold)
+  border-bottom:3px solid var(--gold);
 }
-
-header h1{
-  margin:0;
-  color:#e1bd72
-}
-
-header p{
-  margin:5px 0;
-  color:#ddd
-}
-
-nav{
-  display:flex;
-  gap:6px;
-  overflow:auto;
-  background:#fff;
-  padding:10px;
-  position:sticky;
-  top:0;
-  z-index:2;
-  border-bottom:1px solid #ddd
-}
-
-nav button{
-  border:0;
-  background:#eee;
-  padding:10px 13px;
-  border-radius:20px;
-  white-space:nowrap
-}
-
-nav button.active{
-  background:var(--dark);
-  color:#fff
-}
-
-main{
-  padding:16px;
-  max-width:900px;
-  margin:auto
-}
-
-.screen{display:none}
-
-.screen.active{display:block}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px
-}
-
+header h1{margin:0;color:#e1bd72}
+header p{margin:5px 0;color:#ddd}
+main{max-width:950px;margin:auto;padding:16px}
 .card{
-  background:var(--card);
+  background:#fff;
   padding:16px;
   border-radius:14px;
-  box-shadow:0 2px 8px #00000012
+  box-shadow:0 2px 8px #0001;
+  margin-bottom:14px;
 }
-
-.metric{
-  font-size:24px;
-  font-weight:bold;
-  margin-top:7px
-}
-
-.muted{
-  color:#777;
-  font-size:13px
-}
-
-.row{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  align-items:center;
-  margin:10px 0
-}
-
-input,select{
+input,select,textarea{
   width:100%;
   padding:12px;
   border:1px solid #ddd;
   border-radius:9px;
-  margin:5px 0 10px
+  margin:5px 0 10px;
+  font:inherit;
 }
-
+textarea{min-height:80px}
+button{font:inherit;cursor:pointer}
 .btn{
   border:0;
   background:var(--dark);
   color:#fff;
   padding:11px 15px;
   border-radius:9px;
-  cursor:pointer
 }
-
-.gold{
-  background:var(--gold)
+.gold{background:var(--gold)}
+.green{background:var(--green)}
+.red{background:var(--red)}
+.blue{background:var(--blue)}
+.hidden{display:none!important}
+.error{color:#b00020;font-size:14px}
+.muted{color:#777;font-size:13px}
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
 }
-
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.metric{
+  font-size:25px;
+  font-weight:bold;
+  margin-top:7px;
+}
+.nav{
+  display:flex;
+  gap:7px;
+  overflow:auto;
+  background:#fff;
+  padding:10px;
+  position:sticky;
+  top:0;
+  z-index:5;
+  border-bottom:1px solid #ddd;
+}
+.nav button{
+  border:0;
+  background:#eee;
+  padding:10px 13px;
+  border-radius:20px;
+  white-space:nowrap;
+}
+.nav button.active{
+  background:var(--dark);
+  color:#fff;
+}
+.screen{display:none}
+.screen.active{display:block}
 .list{
   background:#fff;
-  padding:12px;
-  border-radius:10px;
-  margin:8px 0;
-  border:1px solid #eee
+  padding:14px;
+  border-radius:11px;
+  margin:9px 0;
+  border:1px solid #eee;
 }
-
-.error{
-  color:#b00020;
-  font-size:14px;
-  margin:8px 0
+.empty{
+  text-align:center;
+  padding:25px;
+  color:#777;
 }
-
-#app{
-  display:none
+.role-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:15px 0;
 }
-
-.auth-box{
-  max-width:430px;
-  margin:40px auto;
-  padding:16px
+.role{
+  border:2px solid #ddd;
+  background:#fff;
+  border-radius:12px;
+  padding:16px;
+  text-align:center;
 }
-
-@media(min-width:650px){
-  .grid{
-    grid-template-columns:repeat(4,1fr)
-  }
+.role.selected{
+  border-color:var(--gold);
+  background:#fff8e8;
+}
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  background:#eee;
+  font-size:12px;
+}
+.pending{background:#fff3cd}
+.accepted{background:#d9f7df}
+.rejected{background:#ffe0e0}
+.completed{background:#dcecff}
+.salon-card{
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:14px;
+  overflow:hidden;
+  margin-bottom:12px;
+}
+.salon-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+.salon-body{padding:14px}
+.auth{
+  max-width:460px;
+  margin:25px auto;
+  padding:16px;
+}
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<section id="authScreen" class="auth-box">
+<!-- ================= AUTH ================= -->
+
+<section id="auth" class="auth">
 
 <div class="card">
 
@@ -170,153 +180,161 @@ Salon Mitra ✂️
 </h1>
 
 <p class="muted">
-Har salon owner ka data alag rahega.
+Account type choose karein
 </p>
+
+<div class="role-grid">
+
+<button id="customerRole"
+class="role selected"
+type="button">
+
+<div style="font-size:30px">👤</div>
+<b>Customer</b>
+<div class="muted">Salon book karein</div>
+
+</button>
+
+<button id="ownerRole"
+class="role"
+type="button">
+
+<div style="font-size:30px">✂️</div>
+<b>Salon Owner</b>
+<div class="muted">Salon manage karein</div>
+
+</button>
+
+</div>
+
+
+<!-- SIGNUP -->
 
 <div id="signupBox">
 
 <h2>Signup</h2>
 
-<input
-  id="signupEmail"
-  type="email"
-  placeholder="Email"
->
+<input id="signupName"
+placeholder="Name">
 
-<input
-  id="signupPassword"
-  type="password"
-  placeholder="Password (6+ characters)"
->
+<input id="signupEmail"
+type="email"
+placeholder="Email">
 
-<button
-  class="btn gold"
-  style="width:100%"
-  id="signupBtn"
->
+<input id="signupPassword"
+type="password"
+placeholder="Password (6+ characters)">
+
+<input id="signupPhone"
+placeholder="Mobile number">
+
+<button id="signupBtn"
+class="btn gold"
+style="width:100%">
 Create Account
 </button>
 
 <p id="signupError" class="error"></p>
 
 <p class="muted">
-Account pehle se hai?
+Account hai?
 
-<button
-  class="btn"
-  id="showLogin"
-  style="padding:6px 10px"
->
+<button id="showLogin"
+class="btn"
+type="button">
 Login
 </button>
-
 </p>
 
 </div>
 
 
-<div id="loginBox" style="display:none">
+<!-- LOGIN -->
+
+<div id="loginBox" class="hidden">
 
 <h2>Login</h2>
 
-<input
-  id="loginEmail"
-  type="email"
-  placeholder="Email"
->
+<input id="loginEmail"
+type="email"
+placeholder="Email">
 
-<input
-  id="loginPassword"
-  type="password"
-  placeholder="Password"
->
+<input id="loginPassword"
+type="password"
+placeholder="Password">
 
-<button
-  class="btn gold"
-  style="width:100%"
-  id="loginBtn"
->
+<button id="loginBtn"
+class="btn gold"
+style="width:100%">
 Login
 </button>
 
 <p id="loginError" class="error"></p>
 
 <p class="muted">
-Naya account banana hai?
+Naya account?
 
-<button
-  class="btn"
-  id="showSignup"
-  style="padding:6px 10px"
->
+<button id="showSignup"
+class="btn"
+type="button">
 Signup
 </button>
-
 </p>
 
 </div>
 
 </div>
-
 </section>
 
 
-<div id="app">
+<!-- ================================================= -->
+<!-- OWNER -->
+<!-- ================================================= -->
+
+<div id="ownerApp" class="hidden">
 
 <header>
 
-<div class="row" style="margin:0">
+<div class="row">
 
 <div>
-
 <h1>Salon Mitra</h1>
-
-<p>
-Chhote Salon, Badi Pehchaan ✂️
-</p>
-
+<p>Salon Owner Dashboard ✂️</p>
 </div>
 
-<button
-  class="btn"
-  id="logoutBtn"
->
+<button id="ownerLogout" class="btn">
 Logout
 </button>
 
 </div>
 
-<div
-  id="userEmail"
-  class="muted"
-  style="color:#ddd"
-></div>
+<div id="ownerEmail"
+class="muted"
+style="color:#ddd">
+</div>
 
 </header>
 
 
-<nav id="nav">
+<nav id="ownerNav" class="nav">
 
-<button
-  data-s="home"
-  class="active"
->
+<button data-screen="ownerHome" class="active">
 🏠 Home
 </button>
 
-<button data-s="appointments">
-📅 Booking
+<button data-screen="ownerBookings">
+📅 Bookings
 </button>
 
-<button data-s="customers">
-👥 Customers
-</button>
-
-<button data-s="services">
+<button data-screen="ownerServices">
 ✂️ Services
 </button>
 
-<button data-s="income">
+<button data-screen="ownerProfile">
+🏪 Salon
+</button>
+
+<button data-screen="ownerIncome">
 💰 Income
 </button>
 
@@ -325,197 +343,92 @@ Logout
 
 <main>
 
-<section
-  id="home"
-  class="screen active"
->
+<section id="ownerHome"
+class="screen active">
 
 <h2>Dashboard</h2>
 
 <div class="grid">
 
 <div class="card">
-
-<div class="muted">
-Today's Appointments
+<div class="muted">Today's Bookings</div>
+<div id="todayBookings" class="metric">0</div>
 </div>
-
-<div
-  class="metric"
-  id="mAppointments"
->
-0
-</div>
-
-</div>
-
 
 <div class="card">
-
-<div class="muted">
-Today's Income
-</div>
-
+<div class="muted">Today's Income</div>
 <div class="metric">
-₹<span id="mIncome">0</span>
+₹<span id="todayIncome">0</span>
 </div>
-
 </div>
-
 
 <div class="card">
-
-<div class="muted">
-Customers
+<div class="muted">Customers</div>
+<div id="ownerCustomers" class="metric">0</div>
 </div>
-
-<div
-  class="metric"
-  id="mCustomers"
->
-0
-</div>
-
-</div>
-
 
 <div class="card">
-
-<div class="muted">
-Services
-</div>
-
-<div
-  class="metric"
-  id="mServices"
->
-0
+<div class="muted">Services</div>
+<div id="ownerServicesCount" class="metric">0</div>
 </div>
 
 </div>
 
-</div>
-
+<div class="card">
 
 <h3>Quick Actions</h3>
 
-<button
-  class="btn gold"
-  onclick="show('appointments')"
->
-+ Add Appointment
+<button class="btn gold"
+onclick="ownerGo('ownerBookings')">
+View Bookings
 </button>
 
-<button
-  class="btn"
-  onclick="show('customers')"
->
-+ Add Customer
-</button>
-
-</section>
-
-
-<section
-  id="appointments"
-  class="screen"
->
-
-<h2>Appointments</h2>
-
-<div class="card">
-
-<input
-  id="aName"
-  placeholder="Customer name"
->
-
-<input
-  id="aDate"
-  type="date"
->
-
-<input
-  id="aTime"
-  type="time"
->
-
-<select id="aService"></select>
-
-<button
-  class="btn"
-  onclick="addAppointment()"
->
-Save Appointment
+<button class="btn"
+onclick="ownerGo('ownerServices')">
+Add Service
 </button>
 
 </div>
 
-<div id="appointmentList"></div>
+</section>
+
+
+<section id="ownerBookings"
+class="screen">
+
+<h2>Customer Bookings</h2>
+
+<div id="ownerBookingList"></div>
 
 </section>
 
 
-<section
-  id="customers"
-  class="screen"
->
-
-<h2>Customers</h2>
-
-<div class="card">
-
-<input
-  id="cName"
-  placeholder="Customer name"
->
-
-<input
-  id="cPhone"
-  placeholder="Mobile number"
-  inputmode="numeric"
->
-
-<button
-  class="btn"
-  onclick="addCustomer()"
->
-Save Customer
-</button>
-
-</div>
-
-<div id="customerList"></div>
-
-</section>
-
-
-<section
-  id="services"
-  class="screen"
->
+<section id="ownerServices"
+class="screen">
 
 <h2>Services</h2>
 
+<p class="muted">
+Koi service automatically add nahi hogi.
+Owner khud service aur price set karega.
+</p>
+
 <div class="card">
 
-<input
-  id="sName"
-  placeholder="Service name"
->
+<input id="newServiceName"
+placeholder="Service name">
 
-<input
-  id="sPrice"
-  type="number"
-  placeholder="Price (₹)"
->
+<input id="newServicePrice"
+type="number"
+min="0"
+placeholder="Price (₹)">
 
-<button
-  class="btn"
-  onclick="addService()"
->
-Save Service
+<button id="addService"
+class="btn gold">
++ Add Service
 </button>
+
+<p id="serviceError" class="error"></p>
 
 </div>
 
@@ -524,26 +437,54 @@ Save Service
 </section>
 
 
-<section
-  id="income"
-  class="screen"
->
+<section id="ownerProfile"
+class="screen">
+
+<h2>Salon Profile</h2>
+
+<div class="card">
+
+<input id="salonName"
+placeholder="Salon name">
+
+<input id="salonImage"
+placeholder="Salon image URL">
+
+<input id="salonLocation"
+placeholder="Address / location">
+
+<input id="salonMap"
+placeholder="Google Maps link">
+
+<textarea id="salonDescription"
+placeholder="Salon description"></textarea>
+
+<button id="saveSalon"
+class="btn gold">
+Save Salon Profile
+</button>
+
+<p id="profileMsg" class="error"></p>
+
+</div>
+
+</section>
+
+
+<section id="ownerIncome"
+class="screen">
 
 <h2>Income</h2>
 
 <div class="card">
 
 <div class="muted">
-Total recorded income
+Total completed income
 </div>
 
 <div class="metric">
 ₹<span id="totalIncome">0</span>
 </div>
-
-<p class="muted">
-Completed appointments se income calculate hogi.
-</p>
 
 </div>
 
@@ -552,946 +493,1906 @@ Completed appointments se income calculate hogi.
 </section>
 
 </main>
+</div>
+
+
+<!-- ================================================= -->
+<!-- CUSTOMER -->
+<!-- ================================================= -->
+
+<div id="customerApp" class="hidden">
+
+<header>
+
+<div class="row">
+
+<div>
+<h1>Salon Mitra</h1>
+<p>Customer Section 👤</p>
+</div>
+
+<button id="customerLogout"
+class="btn">
+Logout
+</button>
+
+</div>
+
+<div id="customerEmail"
+class="muted"
+style="color:#ddd">
+</div>
+
+</header>
+
+
+<nav id="customerNav" class="nav">
+
+<button data-screen="customerHome"
+class="active">
+🏠 Home
+</button>
+
+<button data-screen="salonSearch">
+🔎 Salons
+</button>
+
+<button data-screen="myBookings">
+📅 My Bookings
+</button>
+
+</nav>
+
+
+<main>
+
+<section id="customerHome"
+class="screen active">
+
+<h2>Welcome</h2>
+
+<div class="card">
+
+<p>
+Salon search karein aur appointment request bhejein.
+</p>
+
+<button class="btn gold"
+onclick="customerGo('salonSearch')">
+🔎 Find Salon
+</button>
+
+<button class="btn"
+onclick="customerGo('myBookings')">
+📅 My Bookings
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="muted">
+My Bookings
+</div>
+
+<div id="customerBookingCount"
+class="metric">
+0
+</div>
+
+</div>
+
+</section>
+
+
+<section id="salonSearch"
+class="screen">
+
+<h2>Find Salon</h2>
+
+<div class="card">
+
+<input id="searchText"
+placeholder="Salon name ya location">
+
+<button id="searchBtn"
+class="btn gold">
+Search
+</button>
+
+</div>
+
+<div id="salonList"></div>
+
+</section>
+
+
+<section id="myBookings"
+class="screen">
+
+<h2>My Bookings</h2>
+
+<div id="customerBookingList"></div>
+
+</section>
+
+
+<!-- CUSTOMER BOOKING -->
+
+<section id="bookingForm"
+class="screen">
+
+<h2>Book Appointment</h2>
+
+<div id="bookingSalon"
+class="card">
+</div>
+
+<div class="card">
+
+<input id="bookOwner"
+type="hidden">
+
+<input id="bookName"
+placeholder="Your name">
+
+<input id="bookPhone"
+placeholder="Mobile number">
+
+
+<!-- CUSTOMER SERVICE SELECT -->
+<label>
+<b>Select Service</b>
+</label>
+
+<select id="bookService">
+<option value="">
+Select service
+</option>
+</select>
+
+
+<!-- PRICE AUTOMATIC -->
+<label>
+<b>Price</b>
+</label>
+
+<input id="bookPrice"
+type="text"
+readonly
+placeholder="Service select karne par price aayega">
+
+
+<input id="bookDate"
+type="date">
+
+<input id="bookTime"
+type="time">
+
+<textarea id="bookNote"
+placeholder="Note (optional)">
+</textarea>
+
+<button id="sendBooking"
+class="btn gold">
+Send Booking Request
+</button>
+
+<p id="bookingError"
+class="error">
+</p>
+
+</div>
+
+</section>
+
+</main>
 
 </div>
 
 
+<!-- ================================================= -->
 <!-- FIREBASE -->
+<!-- ================================================= -->
 
 <script type="module">
 
 import {
-  initializeApp
+initializeApp
 }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 
 import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  updateDoc,
-  doc,
-  serverTimestamp
+getFirestore,
+collection,
+collectionGroup,
+doc,
+getDoc,
+getDocs,
+addDoc,
+setDoc,
+updateDoc,
+deleteDoc,
+query,
+where,
+serverTimestamp,
+runTransaction
 }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+onAuthStateChanged,
+signOut
 }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
-const firebaseConfig = {
+const firebaseConfig={
 
-  apiKey:
-  "AIzaSyBfSOY5P1uguVtRb2gdQX9QxSn32rUDWq4",
+apiKey:
+"AIzaSyBfSOY5P1uguVtRb2gdQX9QxSn32rUDWq4",
 
-  authDomain:
-  "salon-mitra-1d84c.firebaseapp.com",
+authDomain:
+"salon-mitra-1d84c.firebaseapp.com",
 
-  projectId:
-  "salon-mitra-1d84c",
+projectId:
+"salon-mitra-1d84c",
 
-  storageBucket:
-  "salon-mitra-1d84c.firebasestorage.app",
+storageBucket:
+"salon-mitra-1d84c.firebasestorage.app",
 
-  messagingSenderId:
-  "178446991322",
+messagingSenderId:
+"178446991322",
 
-  appId:
-  "1:178446991322:web:ceff70d988be47aa298ae3"
+appId:
+"1:178446991322:web:ceff70d988be47aa298ae3"
 
 };
 
 
-const firebaseApp =
+const app=
 initializeApp(firebaseConfig);
 
-const db =
-getFirestore(firebaseApp);
+const db=
+getFirestore(app);
 
-const auth =
-getAuth(firebaseApp);
+const auth=
+getAuth(app);
 
+let selectedRole="customer";
+let profile=null;
+let ownerBookings=[];
 
-let state = {
-
-  customers:[],
-  services:[],
-  appointments:[],
-  income:[]
-
-};
-
-let loading=false;
-
-
-const $ =
-id => document.getElementById(id);
-
-
-function path(name){
-
-  if(!auth.currentUser){
-
-    throw new Error(
-      "Pehle login karein"
-    );
-
-  }
-
-  return collection(
-    db,
-    "salons",
-    auth.currentUser.uid,
-    name
-  );
-
-}
-
-
-function errorText(e){
-
-  const m={
-
-    "auth/email-already-in-use":
-    "Ye email pehle se registered hai.",
-
-    "auth/invalid-email":
-    "Email sahi nahi hai.",
-
-    "auth/weak-password":
-    "Password kam se kam 6 characters ka hona chahiye.",
-
-    "auth/invalid-credential":
-    "Email ya password galat hai.",
-
-    "auth/user-not-found":
-    "Account nahi mila.",
-
-    "auth/wrong-password":
-    "Password galat hai."
-
-  };
-
-  return m[e.code] || e.message;
-
-}
-
-
-function show(id){
-
-  document
-  .querySelectorAll('#app .screen')
-  .forEach(x =>
-    x.classList.remove('active')
-  );
-
-  $(id).classList.add('active');
-
-  document
-  .querySelectorAll('#nav button')
-  .forEach(x =>
-    x.classList.toggle(
-      'active',
-      x.dataset.s===id
-    )
-  );
-
-}
-
-
-window.show=show;
-
-
-document
-.querySelectorAll('#nav button')
-.forEach(
-  b =>
-  b.onclick=() =>
-  show(b.dataset.s)
-);
-
-
-async function loadData(){
-
-  if(!auth.currentUser)
-    return;
-
-  loading=true;
-
-  try{
-
-    const [
-      c,
-      s,
-      a,
-      i
-    ] =
-    await Promise.all([
-
-      getDocs(
-        path("customers")
-      ),
-
-      getDocs(
-        path("services")
-      ),
-
-      getDocs(
-        path("appointments")
-      ),
-
-      getDocs(
-        path("income")
-      )
-
-    ]);
-
-
-    state.customers =
-    c.docs.map(
-      x => ({
-        id:x.id,
-        ...x.data()
-      })
-    );
-
-
-    state.services =
-    s.docs.map(
-      x => ({
-        id:x.id,
-        ...x.data()
-      })
-    );
-
-
-    state.appointments =
-    a.docs.map(
-      x => ({
-        id:x.id,
-        ...x.data()
-      })
-    );
-
-
-    state.income =
-    i.docs.map(
-      x => ({
-        id:x.id,
-        ...x.data()
-      })
-    );
-
-
-    if(state.services.length===0){
-
-      const defaults=[
-
-        {
-          name:"Haircut",
-          price:100
-        },
-
-        {
-          name:"Beard Trim",
-          price:80
-        },
-
-        {
-          name:"Hair Wash",
-          price:70
-        }
-
-      ];
-
-
-      for(
-        const s
-        of defaults
-      ){
-
-        await addDoc(
-          path("services"),
-          {
-            ...s,
-            createdAt:
-            serverTimestamp()
-          }
-        );
-
-      }
-
-
-      const fresh =
-      await getDocs(
-        path("services")
-      );
-
-
-      state.services =
-      fresh.docs.map(
-        x => ({
-          id:x.id,
-          ...x.data()
-        })
-      );
-
-    }
-
-
-    render();
-
-  }
-  catch(e){
-
-    console.error(e);
-
-    alert(
-      "Data load nahi hua: "
-      + e.message
-    );
-
-  }
-  finally{
-
-    loading=false;
-
-  }
-
-}
-
-
-async function addCustomer(){
-
-  const n =
-  $("cName").value.trim();
-
-  const p =
-  $("cPhone").value.trim();
-
-
-  if(!n){
-
-    return alert(
-      "Customer name डालें"
-    );
-
-  }
-
-
-  try{
-
-    await addDoc(
-      path("customers"),
-      {
-
-        name:n,
-
-        phone:p,
-
-        ownerUid:
-        auth.currentUser.uid,
-
-        createdAt:
-        serverTimestamp()
-
-      }
-    );
-
-
-    $("cName").value="";
-
-    $("cPhone").value="";
-
-
-    await loadData();
-
-
-    alert(
-      "Customer save ho gaya ✅"
-    );
-
-  }
-  catch(e){
-
-    alert(
-      "Customer save nahi hua: "
-      + e.message
-    );
-
-  }
-
-}
-
-
-window.addCustomer=
-addCustomer;
-
-
-async function addService(){
-
-  const n =
-  $("sName").value.trim();
-
-  const p =
-  Number($("sPrice").value);
-
-
-  if(!n || !p){
-
-    return alert(
-      "Service और price डालें"
-    );
-
-  }
-
-
-  try{
-
-    await addDoc(
-      path("services"),
-      {
-
-        name:n,
-
-        price:p,
-
-        ownerUid:
-        auth.currentUser.uid,
-
-        createdAt:
-        serverTimestamp()
-
-      }
-    );
-
-
-    $("sName").value="";
-
-    $("sPrice").value="";
-
-
-    await loadData();
-
-  }
-  catch(e){
-
-    alert(
-      "Service save nahi hua: "
-      + e.message
-    );
-
-  }
-
-}
-
-
-window.addService=
-addService;
-
-
-async function addAppointment(){
-
-  const n =
-  $("aName").value.trim();
-
-  const date =
-  $("aDate").value;
-
-  const time =
-  $("aTime").value;
-
-
-  const sv =
-  state.services[
-    Number($("aService").value)
-  ];
-
-
-  if(
-    !n ||
-    !date ||
-    !time ||
-    !sv
-  ){
-
-    return alert(
-      "सारी जानकारी भरें"
-    );
-
-  }
-
-
-  try{
-
-    await addDoc(
-      path("appointments"),
-      {
-
-        name:n,
-
-        date:date,
-
-        time:time,
-
-        service:sv.name,
-
-        price:Number(sv.price),
-
-        status:"Pending",
-
-        ownerUid:
-        auth.currentUser.uid,
-
-        createdAt:
-        serverTimestamp()
-
-      }
-    );
-
-
-    $("aName").value="";
-
-
-    await loadData();
-
-  }
-  catch(e){
-
-    alert(
-      "Booking save nahi hui: "
-      + e.message
-    );
-
-  }
-
-}
-
-
-window.addAppointment=
-addAppointment;
-
-
-async function complete(id){
-
-  const ap =
-  state.appointments
-  .find(x => x.id===id);
-
-
-  if(
-    !ap ||
-    ap.status==="Completed"
-  ){
-
-    return;
-
-  }
-
-
-  try{
-
-    await updateDoc(
-
-      doc(
-        db,
-        "salons",
-        auth.currentUser.uid,
-        "appointments",
-        id
-      ),
-
-      {
-        status:"Completed"
-      }
-
-    );
-
-
-    await addDoc(
-      path("income"),
-      {
-
-        appointmentId:id,
-
-        name:ap.name,
-
-        amount:
-        Number(ap.price),
-
-        date:ap.date,
-
-        ownerUid:
-        auth.currentUser.uid,
-
-        createdAt:
-        serverTimestamp()
-
-      }
-    );
-
-
-    await loadData();
-
-  }
-  catch(e){
-
-    alert(
-      "Appointment complete nahi hua: "
-      + e.message
-    );
-
-  }
-
-}
-
-
-window.complete=
-complete;
-
-
-function render(){
-
-  $("aService").innerHTML =
-  state.services
-  .map(
-    (s,i) =>
-    `<option value="${i}">
-      ${escapeHtml(s.name)}
-      — ₹${s.price}
-    </option>`
-  )
-  .join("");
-
-
-  const today =
-  new Date()
-  .toISOString()
-  .slice(0,10);
-
-
-  const todays =
-  state.appointments
-  .filter(
-    x => x.date===today
-  );
-
-
-  $("mAppointments")
-  .textContent =
-  todays.length;
-
-
-  $("mIncome")
-  .textContent =
-  state.income
-  .filter(
-    x => x.date===today
-  )
-  .reduce(
-    (a,x) =>
-    a+Number(x.amount||0),
-    0
-  );
-
-
-  $("mCustomers")
-  .textContent =
-  state.customers.length;
-
-
-  $("mServices")
-  .textContent =
-  state.services.length;
-
-
-  $("totalIncome")
-  .textContent =
-  state.income
-  .reduce(
-    (a,x) =>
-    a+Number(x.amount||0),
-    0
-  );
-
-
-  $("customerList").innerHTML =
-  state.customers
-  .map(
-    x =>
-    `<div class="list">
-      <b>${escapeHtml(x.name)}</b>
-      <br>
-      <span class="muted">
-        ${escapeHtml(
-          x.phone||"No phone"
-        )}
-      </span>
-    </div>`
-  )
-  .join("")
-  ||
-  '<p class="muted">No customers yet.</p>';
-
-
-  $("serviceList").innerHTML =
-  state.services
-  .map(
-    x =>
-    `<div class="list">
-      <b>${escapeHtml(x.name)}</b>
-      <span style="float:right">
-        ₹${x.price}
-      </span>
-    </div>`
-  )
-  .join("");
-
-
-  $("appointmentList").innerHTML =
-  state.appointments
-  .slice()
-  .reverse()
-  .map(
-    x =>
-    `<div class="list">
-
-      <b>
-        ${escapeHtml(x.name)}
-      </b>
-      —
-      ${escapeHtml(x.service)}
-
-      <br>
-
-      <span class="muted">
-        ${x.date}
-        •
-        ${x.time}
-        •
-        ₹${x.price}
-      </span>
-
-      <div class="row">
-
-        <span>
-          ${x.status}
-        </span>
-
-        ${
-          x.status!=="Completed"
-
-          ?
-
-          `<button
-            class="btn gold"
-            onclick="complete('${x.id}')"
-          >
-            Completed
-          </button>`
-
-          :
-
-          ""
-        }
-
-      </div>
-
-    </div>`
-  )
-  .join("")
-  ||
-  '<p class="muted">No appointments yet.</p>';
-
-
-  $("incomeList").innerHTML =
-  state.income
-  .slice()
-  .reverse()
-  .map(
-    x =>
-    `<div class="list">
-
-      ${escapeHtml(
-        x.name||"Appointment"
-      )}
-
-      <span style="float:right">
-        ₹${x.amount}
-      </span>
-
-      <br>
-
-      <span class="muted">
-        ${x.date||""}
-      </span>
-
-    </div>`
-  )
-  .join("")
-  ||
-  '<p class="muted">No income recorded yet.</p>';
-
-}
+const $=
+id=>document.getElementById(id);
 
 
 function escapeHtml(v){
 
-  return String(v??"")
-  .replace(
-    /[&<>"']/g,
-
-    c =>
-    ({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[c])
-
-  );
+return String(v??"")
+.replace(
+/[&<>"']/g,
+c=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[c])
+);
 
 }
 
 
+function errorMessage(e){
+
+const m={
+
+"auth/email-already-in-use":
+"Ye email pehle se registered hai.",
+
+"auth/invalid-email":
+"Email sahi nahi hai.",
+
+"auth/weak-password":
+"Password kam se kam 6 characters ka hona chahiye.",
+
+"auth/invalid-credential":
+"Email ya password galat hai."
+
+};
+
+return m[e.code]||e.message;
+
+}
+
+
+function today(){
+
+return new Date()
+.toISOString()
+.slice(0,10);
+
+}
+
+
+/* ================= ROLE ================= */
+
+$("customerRole").onclick=()=>{
+
+selectedRole="customer";
+
+$("customerRole")
+.classList.add("selected");
+
+$("ownerRole")
+.classList.remove("selected");
+
+};
+
+
+$("ownerRole").onclick=()=>{
+
+selectedRole="owner";
+
+$("ownerRole")
+.classList.add("selected");
+
+$("customerRole")
+.classList.remove("selected");
+
+};
+
+
+/* ================= NAV ================= */
+
+function ownerGo(id){
+
+document
+.querySelectorAll("#ownerApp .screen")
+.forEach(
+x=>x.classList.remove("active")
+);
+
+$(id).classList.add("active");
+
+document
+.querySelectorAll("#ownerNav button")
+.forEach(
+b=>b.classList.toggle(
+"active",
+b.dataset.screen===id
+)
+);
+
+}
+
+window.ownerGo=ownerGo;
+
+
+function customerGo(id){
+
+document
+.querySelectorAll("#customerApp .screen")
+.forEach(
+x=>x.classList.remove("active")
+);
+
+$(id).classList.add("active");
+
+document
+.querySelectorAll("#customerNav button")
+.forEach(
+b=>b.classList.toggle(
+"active",
+b.dataset.screen===id
+)
+);
+
+}
+
+window.customerGo=customerGo;
+
+
+document
+.querySelectorAll("#ownerNav button")
+.forEach(
+b=>b.onclick=
+()=>ownerGo(b.dataset.screen)
+);
+
+
+document
+.querySelectorAll("#customerNav button")
+.forEach(
+b=>b.onclick=
+()=>customerGo(b.dataset.screen)
+);
+
+
+/* ================= LOGIN ================= */
+
 $("showLogin").onclick=()=>{
 
-  $("signupBox")
-  .style.display="none";
-
-  $("loginBox")
-  .style.display="block";
+$("signupBox").classList.add("hidden");
+$("loginBox").classList.remove("hidden");
 
 };
 
 
 $("showSignup").onclick=()=>{
 
-  $("loginBox")
-  .style.display="none";
-
-  $("signupBox")
-  .style.display="block";
+$("loginBox").classList.add("hidden");
+$("signupBox").classList.remove("hidden");
 
 };
 
+
+/* ================= SIGNUP ================= */
 
 $("signupBtn").onclick=
 async()=>{
 
-  $("signupError")
-  .textContent="";
+$("signupError").textContent="";
+
+try{
+
+const name=
+$("signupName").value.trim();
+
+const email=
+$("signupEmail").value.trim();
+
+const password=
+$("signupPassword").value;
+
+const phone=
+$("signupPhone").value.trim();
+
+if(!name||!email||!password){
+
+throw new Error(
+"Name, email aur password bhariye."
+);
+
+}
 
 
-  try{
+const result=
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
 
-    await
-    createUserWithEmailAndPassword(
 
-      auth,
+await setDoc(
+doc(db,"users",result.user.uid),
+{
+uid:result.user.uid,
+name:name,
+email:email,
+phone:phone,
+role:selectedRole,
+createdAt:serverTimestamp()
+}
+);
 
-      $("signupEmail")
-      .value
-      .trim(),
 
-      $("signupPassword")
-      .value
+/* Owner ka blank salon */
 
-    );
+if(selectedRole==="owner"){
 
-  }
-  catch(e){
+await setDoc(
+doc(
+db,
+"salons",
+result.user.uid
+),
+{
+ownerUid:result.user.uid,
+name:name+"'s Salon",
+image:"",
+location:"",
+map:"",
+description:"",
+createdAt:serverTimestamp()
+}
+);
 
-    $("signupError")
-    .textContent =
-    errorText(e);
+}
 
-  }
+}
+catch(e){
+
+$("signupError")
+.textContent=
+errorMessage(e);
+
+}
 
 };
 
+
+/* ================= LOGIN ================= */
 
 $("loginBtn").onclick=
 async()=>{
 
-  $("loginError")
-  .textContent="";
+$("loginError").textContent="";
 
+try{
 
-  try{
+await signInWithEmailAndPassword(
+auth,
+$("loginEmail").value.trim(),
+$("loginPassword").value
+);
 
-    await
-    signInWithEmailAndPassword(
+}
+catch(e){
 
-      auth,
+$("loginError")
+.textContent=
+errorMessage(e);
 
-      $("loginEmail")
-      .value
-      .trim(),
-
-      $("loginPassword")
-      .value
-
-    );
-
-  }
-  catch(e){
-
-    $("loginError")
-    .textContent =
-    errorText(e);
-
-  }
+}
 
 };
 
 
-$("logoutBtn").onclick=
+$("ownerLogout").onclick=
+()=>signOut(auth);
+
+$("customerLogout").onclick=
 ()=>signOut(auth);
 
 
-onAuthStateChanged(
-  auth,
-  async user => {
+/* =================================================
+OWNER
+================================================= */
 
-    if(user){
+async function loadOwner(){
 
-      $("authScreen")
-      .style.display="none";
+const uid=
+auth.currentUser.uid;
 
-      $("app")
-      .style.display="block";
 
-      $("userEmail")
-      .textContent =
-      "Logged in: "
-      + user.email;
+/* Salon */
 
-      await loadData();
-
-    }
-    else{
-
-      $("app")
-      .style.display="none";
-
-      $("authScreen")
-      .style.display="block";
-
-    }
-
-  }
+const salon=
+await getDoc(
+doc(db,"salons",uid)
 );
+
+if(salon.exists()){
+
+const s=salon.data();
+
+$("salonName").value=s.name||"";
+$("salonImage").value=s.image||"";
+$("salonLocation").value=s.location||"";
+$("salonMap").value=s.map||"";
+$("salonDescription").value=s.description||"";
+
+}
+
+
+/* Services */
+
+const services=
+await getDocs(
+collection(
+db,
+"salons",
+uid,
+"services"
+)
+);
+
+
+$("ownerServicesCount")
+.textContent=
+services.size;
+
+
+$("serviceList").innerHTML=
+services.size
+
+?
+
+services.docs.map(
+d=>{
+
+const s=d.data();
+
+return `
+
+<div class="list">
+
+<b>
+${escapeHtml(s.name)}
+</b>
+
+<span style="float:right">
+₹${Number(s.price)}
+</span>
+
+<br>
+
+<button
+class="btn red"
+style="margin-top:8px"
+onclick="deleteService('${d.id}')"
+>
+Delete
+</button>
+
+</div>
+
+`;
+
+}
+).join("")
+
+:
+
+`<div class="empty">
+Abhi koi service nahi hai.
+</div>`;
+
+
+/* Bookings */
+
+const bookings=
+await getDocs(
+collection(
+db,
+"salons",
+uid,
+"bookings"
+)
+);
+
+ownerBookings=
+bookings.docs.map(
+d=>({
+id:d.id,
+...d.data()
+})
+);
+
+renderOwner();
+
+}
+
+
+function renderOwner(){
+
+const completed=
+ownerBookings.filter(
+x=>x.status==="Completed"
+);
+
+
+$("todayBookings")
+.textContent=
+ownerBookings.filter(
+x=>x.date===today()
+).length;
+
+
+$("todayIncome")
+.textContent=
+completed
+.filter(
+x=>x.date===today()
+)
+.reduce(
+(a,x)=>a+Number(x.price||0),
+0
+);
+
+
+$("ownerCustomers")
+.textContent=
+new Set(
+ownerBookings.map(
+x=>x.customerUid
+)
+).size;
+
+
+$("totalIncome")
+.textContent=
+completed.reduce(
+(a,x)=>a+Number(x.price||0),
+0
+);
+
+
+/* Income */
+
+$("incomeList").innerHTML=
+completed.length
+
+?
+
+completed
+.slice()
+.reverse()
+.map(
+x=>`
+
+<div class="list">
+
+<b>
+${escapeHtml(x.customerName)}
+</b>
+
+—
+${escapeHtml(x.service)}
+
+<span style="float:right">
+₹${Number(x.price||0)}
+</span>
+
+<br>
+
+<span class="muted">
+${x.date} • ${x.time}
+</span>
+
+</div>
+
+`
+)
+.join("")
+
+:
+
+`<div class="empty">
+Abhi income nahi hai.
+</div>`;
+
+
+/* Bookings */
+
+$("ownerBookingList").innerHTML=
+ownerBookings.length
+
+?
+
+ownerBookings
+.slice()
+.reverse()
+.map(
+x=>{
+
+let buttons="";
+
+if(x.status==="Pending"){
+
+buttons=`
+
+<button
+class="btn green"
+onclick="acceptBooking(
+'${x.id}',
+'${x.date}',
+'${x.time}'
+)"
+>
+Accept
+</button>
+
+<button
+class="btn red"
+onclick="rejectBooking('${x.id}')"
+>
+Reject
+</button>
+
+`;
+
+}
+
+if(x.status==="Accepted"){
+
+buttons=`
+
+<button
+class="btn blue"
+onclick="completeBooking('${x.id}')"
+>
+Mark Completed
+</button>
+
+`;
+
+}
+
+return `
+
+<div class="list">
+
+<div class="row">
+
+<b>
+${escapeHtml(
+x.customerName||"Customer"
+)}
+</b>
+
+<span class="badge ${String(x.status).toLowerCase()}">
+${escapeHtml(x.status)}
+</span>
+
+</div>
+
+<div>
+${escapeHtml(x.service)}
+—
+₹${Number(x.price||0)}
+</div>
+
+<div class="muted">
+
+${x.date}
+•
+${x.time}
+•
+${escapeHtml(x.customerPhone||"")}
+
+</div>
+
+<div style="margin-top:9px">
+${buttons}
+</div>
+
+</div>
+
+`;
+
+}
+)
+.join("")
+
+:
+
+`<div class="empty">
+Abhi koi booking nahi hai.
+</div>`;
+
+}
+
+
+/* ================= ADD OWNER SERVICE ================= */
+
+$("addService").onclick=
+async()=>{
+
+$("serviceError").textContent="";
+
+try{
+
+const name=
+$("newServiceName")
+.value
+.trim();
+
+const price=
+Number(
+$("newServicePrice").value
+);
+
+if(
+!name ||
+$("newServicePrice").value==="" ||
+price<0
+){
+
+throw new Error(
+"Service aur price bhariye."
+);
+
+}
+
+
+await addDoc(
+collection(
+db,
+"salons",
+auth.currentUser.uid,
+"services"
+),
+{
+name:name,
+price:price,
+createdAt:serverTimestamp()
+}
+);
+
+
+$("newServiceName").value="";
+$("newServicePrice").value="";
+
+await loadOwner();
+
+}
+catch(e){
+
+$("serviceError")
+.textContent=
+e.message;
+
+}
+
+};
+
+
+window.deleteService=
+async id=>{
+
+if(!confirm("Service delete karein?"))
+return;
+
+await deleteDoc(
+doc(
+db,
+"salons",
+auth.currentUser.uid,
+"services",
+id
+)
+);
+
+await loadOwner();
+
+};
+
+
+/* ================= SALON PROFILE ================= */
+
+$("saveSalon").onclick=
+async()=>{
+
+try{
+
+await setDoc(
+doc(
+db,
+"salons",
+auth.currentUser.uid
+),
+{
+
+ownerUid:
+auth.currentUser.uid,
+
+name:
+$("salonName").value.trim(),
+
+image:
+$("salonImage").value.trim(),
+
+location:
+$("salonLocation").value.trim(),
+
+map:
+$("salonMap").value.trim(),
+
+description:
+$("salonDescription").value.trim(),
+
+updatedAt:
+serverTimestamp()
+
+},
+{merge:true}
+);
+
+
+$("profileMsg")
+style.color="green";
+
+$("profileMsg")
+textContent=
+"Salon profile save ho gaya ✅";
+
+}
+catch(e){
+
+$("profileMsg")
+textContent=e.message;
+
+}
+
+};
+
+
+/* ================= ACCEPT ================= */
+
+window.acceptBooking=
+async(id,date,time)=>{
+
+try{
+
+const slotId=
+(date+"_"+time)
+.replace(
+/[^a-zA-Z0-9_-]/g,
+"_"
+);
+
+
+await runTransaction(
+db,
+async transaction=>{
+
+const slotRef=
+doc(
+db,
+"salons",
+auth.currentUser.uid,
+"slots",
+slotId
+);
+
+const slot=
+await transaction.get(
+slotRef
+);
+
+
+if(
+slot.exists() &&
+slot.data().status==="Accepted"
+){
+
+throw new Error(
+"Ye date/time slot already booked hai."
+);
+
+}
+
+
+transaction.set(
+slotRef,
+{
+date:date,
+time:time,
+status:"Accepted",
+bookingId:id,
+updatedAt:serverTimestamp()
+}
+);
+
+
+transaction.update(
+doc(
+db,
+"salons",
+auth.currentUser.uid,
+"bookings",
+id
+),
+{
+status:"Accepted",
+acceptedAt:serverTimestamp()
+}
+);
+
+}
+);
+
+await loadOwner();
+
+}
+catch(e){
+
+alert(e.message);
+
+}
+
+};
+
+
+/* ================= REJECT ================= */
+
+window.rejectBooking=
+async id=>{
+
+await updateDoc(
+doc(
+db,
+"salons",
+auth.currentUser.uid,
+"bookings",
+id
+),
+{
+status:"Rejected",
+rejectedAt:serverTimestamp()
+}
+);
+
+await loadOwner();
+
+};
+
+
+/* ================= COMPLETE ================= */
+
+window.completeBooking=
+async id=>{
+
+const booking=
+ownerBookings.find(
+x=>x.id===id
+);
+
+await updateDoc(
+doc(
+db,
+"salons",
+auth.currentUser.uid,
+"bookings",
+id
+),
+{
+status:"Completed",
+completedAt:serverTimestamp()
+}
+);
+
+
+if(booking){
+
+await setDoc(
+doc(
+db,
+"salons",
+auth.currentUser.uid,
+"income",
+id
+),
+{
+bookingId:id,
+amount:Number(booking.price||0),
+customerName:
+booking.customerName||"",
+service:
+booking.service||"",
+date:
+booking.date||"",
+createdAt:
+serverTimestamp()
+}
+);
+
+}
+
+await loadOwner();
+
+};
+
+
+/* =================================================
+CUSTOMER
+================================================= */
+
+
+/* Search salons */
+
+async function searchSalons(){
+
+try{
+
+const text=
+$("searchText")
+.value
+.trim()
+.toLowerCase();
+
+
+const snap=
+await getDocs(
+collection(db,"salons")
+);
+
+
+const salons=
+snap.docs
+.map(
+d=>({
+id:d.id,
+...d.data()
+})
+)
+.filter(
+s=>
+!text ||
+(
+(s.name||"")+" "+
+(s.location||"")
+)
+.toLowerCase()
+.includes(text)
+);
+
+
+$("salonList").innerHTML=
+salons.length
+
+?
+
+salons.map(
+s=>`
+
+<div class="salon-card">
+
+${
+s.image
+?
+`
+<img
+src="${escapeHtml(s.image)}"
+onerror="this.style.display='none'"
+>
+`
+:
+""
+}
+
+<div class="salon-body">
+
+<h3>
+${escapeHtml(s.name||"Salon")}
+</h3>
+
+<div class="muted">
+${escapeHtml(s.location||"")}
+</div>
+
+${
+s.description
+?
+`<p>${escapeHtml(s.description)}</p>`
+:
+""
+}
+
+${
+s.map
+?
+`
+<a
+href="${escapeHtml(s.map)}"
+target="_blank"
+>
+📍 Open Google Maps
+</a>
+`
+:
+""
+}
+
+<br>
+
+<button
+class="btn gold"
+style="margin-top:10px"
+onclick="openBooking('${s.id}')"
+>
+Book Appointment
+</button>
+
+</div>
+
+</div>
+
+`
+)
+.join("")
+
+:
+
+`<div class="empty">
+Koi salon nahi mila.
+</div>`;
+
+}
+catch(e){
+
+$("salonList").innerHTML=
+`<div class="empty">
+Salon load nahi hua.
+</div>`;
+
+}
+
+}
+
+
+$("searchBtn")
+.onclick=
+searchSalons;
+
+
+/* ================= OPEN BOOKING ================= */
+
+window.openBooking=
+async ownerUid=>{
+
+const salon=
+await getDoc(
+doc(
+db,
+"salons",
+ownerUid
+)
+);
+
+
+if(!salon.exists()){
+
+alert("Salon nahi mila.");
+
+return;
+
+}
+
+
+const s=
+salon.data();
+
+
+$("bookOwner").value=
+ownerUid;
+
+
+$("bookingSalon").innerHTML=`
+
+<b>
+${escapeHtml(s.name||"Salon")}
+</b>
+
+<div class="muted">
+${escapeHtml(s.location||"")}
+</div>
+
+`;
+
+
+/* OWNER SERVICES */
+
+const services=
+await getDocs(
+collection(
+db,
+"salons",
+ownerUid,
+"services"
+)
+);
+
+
+/*
+IMPORTANT:
+Customer ko sirf Owner ki services
+dikhenगी.
+Customer price set nahi karega.
+*/
+
+$("bookService").innerHTML=
+`<option value="">
+Select service
+</option>`
++
+services.docs.map(
+d=>{
+
+const x=d.data();
+
+return `
+<option
+value="${d.id}"
+data-price="${Number(x.price||0)}"
+>
+${escapeHtml(x.name)}
+— ₹${Number(x.price||0)}
+</option>
+`;
+
+}
+).join("");
+
+
+$("bookName").value=
+profile?.name||"";
+
+$("bookPhone").value=
+profile?.phone||"";
+
+$("bookPrice").value="";
+
+$("bookDate").value="";
+
+$("bookTime").value="";
+
+$("bookNote").value="";
+
+customerGo(
+"bookingForm"
+);
+
+};
+
+
+/* ================= SERVICE SELECT ================= */
+
+$("bookService").onchange=
+()=>{
+
+const option=
+$("bookService")
+.options[
+$("bookService").selectedIndex
+];
+
+if(!option || !option.dataset.price){
+
+$("bookPrice").value="";
+
+return;
+
+}
+
+$("bookPrice").value=
+"₹"+option.dataset.price;
+
+};
+
+
+/* ================= SEND BOOKING ================= */
+
+$("sendBooking").onclick=
+async()=>{
+
+$("bookingError")
+.textContent="";
+
+try{
+
+const owner=
+$("bookOwner").value;
+
+const name=
+$("bookName").value.trim();
+
+const phone=
+$("bookPhone").value.trim();
+
+const select=
+$("bookService");
+
+const serviceId=
+select.value;
+
+const option=
+select.options[
+select.selectedIndex
+];
+
+const service=
+option.textContent
+.split("—")[0]
+.trim();
+
+const price=
+Number(
+option.dataset.price
+);
+
+const date=
+$("bookDate").value;
+
+const time=
+$("bookTime").value;
+
+
+if(
+!owner ||
+!name ||
+!serviceId ||
+!date ||
+!time
+){
+
+throw new Error(
+"Name, service, date aur time bhariye."
+);
+
+}
+
+
+/* Check accepted slot */
+
+const q=
+query(
+collection(
+db,
+"salons",
+owner,
+"bookings"
+),
+
+where("date","==",date),
+
+where("time","==",time),
+
+where("status","==","Accepted")
+);
+
+
+const existing=
+await getDocs(q);
+
+
+if(!existing.empty){
+
+throw new Error(
+"Ye time slot already booked hai."
+);
+
+}
+
+
+/* Booking */
+
+await addDoc(
+collection(
+db,
+"salons",
+owner,
+"bookings"
+),
+{
+
+ownerUid:owner,
+
+customerUid:
+auth.currentUser.uid,
+
+customerName:name,
+
+customerPhone:phone,
+
+service:service,
+
+serviceId:serviceId,
+
+price:price,
+
+date:date,
+
+time:time,
+
+note:
+$("bookNote").value.trim(),
+
+status:"Pending",
+
+createdAt:
+serverTimestamp()
+
+}
+);
+
+
+alert(
+"Booking request bhej di gayi ✅"
+);
+
+
+await loadCustomerBookings();
+
+customerGo("myBookings");
+
+}
+catch(e){
+
+$("bookingError")
+.textContent=
+e.message;
+
+}
+
+};
+
+
+/* ================= CUSTOMER BOOKINGS ================= */
+
+async function loadCustomerBookings(){
+
+try{
+
+const q=
+query(
+collectionGroup(
+db,
+"bookings"
+),
+
+where(
+"customerUid",
+"==",
+auth.currentUser.uid
+)
+);
+
+
+const snap=
+await getDocs(q);
+
+
+const bookings=
+snap.docs.map(
+d=>({
+id:d.id,
+...d.data()
+})
+);
+
+
+$("customerBookingCount")
+.textContent=
+bookings.length;
+
+
+$("customerBookingList")
+.innerHTML=
+bookings.length
+
+?
+
+bookings
+.slice()
+.reverse()
+.map(
+x=>`
+
+<div class="list">
+
+<div class="row">
+
+<b>
+${escapeHtml(x.service)}
+</b>
+
+<span
+class="badge ${String(x.status).toLowerCase()}"
+>
+${escapeHtml(x.status)}
+</span>
+
+</div>
+
+<div>
+₹${Number(x.price||0)}
+</div>
+
+<div class="muted">
+${x.date||""}
+•
+${x.time||""}
+</div>
+
+${
+x.status==="Completed"
+
+?
+
+`
+<button
+class="btn gold"
+style="margin-top:9px"
+onclick="giveRating(
+'${x.ownerUid}',
+'${x.id}'
+)"
+>
+⭐ Rate & Review
+</button>
+`
+
+:
+
+""
+}
+
+</div>
+
+`
+)
+.join("")
+
+:
+
+`<div class="empty">
+Abhi koi booking nahi hai.
+</div>`;
+
+}
+catch(e){
+
+$("customerBookingList")
+.innerHTML=
+`<div class="empty">
+Bookings load nahi hui.
+</div>`;
+
+}
+
+}
+
+
+/* ================= RATING ================= */
+
+window.giveRating=
+async(owner,id)=>{
+
+const stars=
+prompt(
+"Rating 1 se 5 tak dein:"
+);
+
+
+if(
+!["1","2","3","4","5"]
+.includes(stars)
+){
+
+return;
+
+}
+
+
+const review=
+prompt(
+"Review likhein (optional):"
+)||"";
+
+
+await setDoc(
+doc(
+db,
+"salons",
+owner,
+"ratings",
+auth.currentUser.uid+
+"_"+id
+),
+{
+
+customerUid:
+auth.currentUser.uid,
+
+bookingId:id,
+
+stars:Number(stars),
+
+review:review,
+
+createdAt:
+serverTimestamp()
+
+}
+);
+
+
+alert(
+"Rating submit ho gayi ✅"
+);
+
+};
+
+
+/* ================= AUTH STATE ================= */
+
+onAuthStateChanged(
+auth,
+async user=>{
+
+$("auth")
+.classList.toggle(
+"hidden",
+!!user
+);
+
+$("ownerApp")
+.classList.add("hidden");
+
+$("customerApp")
+.classList.add("hidden");
+
+
+if(!user)
+return;
+
+
+const userDoc=
+await getDoc(
+doc(
+db,
+"users",
+user.uid
+)
+);
+
+
+if(!userDoc.exists()){
+
+alert(
+"User profile nahi mila."
+);
+
+return;
+
+}
+
+
+profile=
+userDoc.data();
+
+
+if(profile.role==="owner"){
+
+$("ownerApp")
+.classList.remove(
+"hidden"
+);
+
+$("ownerEmail")
+.textContent=
+"Logged in: "+
+user.email;
+
+ownerGo("ownerHome");
+
+await loadOwner();
+
+}
+else{
+
+$("customerApp")
+.classList.remove(
+"hidden"
+);
+
+$("customerEmail")
+.textContent=
+"Logged in: "+
+user.email;
+
+customerGo("customerHome");
+
+await loadCustomerBookings();
+
+await searchSalons();
+
+}
+
+});
 
 </script>
 
