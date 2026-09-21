@@ -2124,127 +2124,195 @@ e.message;
 
 async function loadCustomerBookings(){
 
-try{
+  try{
 
-const q=
-query(
-collectionGroup(
-db,
-"bookings"
-),
+    const currentUser =
+      auth.currentUser.uid;
 
-where(
-"customerUid",
-"==",
-auth.currentUser.uid
-)
-);
+    /* सभी salons निकालो */
+    const salonsSnap =
+      await getDocs(
+        collection(db,"salons")
+      );
+
+    let bookings = [];
+
+    /* हर salon की bookings check करो */
+    for(const salonDoc of salonsSnap.docs){
+
+      const bookingsSnap =
+        await getDocs(
+          collection(
+            db,
+            "salons",
+            salonDoc.id,
+            "bookings"
+          )
+        );
+
+      bookingsSnap.forEach(bookingDoc => {
+
+        const data = bookingDoc.data();
+
+        /* सिर्फ current customer की booking */
+        if(
+          data.customerUid === currentUser
+        ){
+
+          bookings.push({
+
+            id: bookingDoc.id,
+
+            ownerUid: salonDoc.id,
+
+            ...data
+
+          });
+
+        }
+
+      });
+
+    }
 
 
-const snap=
-await getDocs(q);
+    /* Booking count */
+    $("customerBookingCount")
+      .textContent = bookings.length;
 
 
-const bookings=
-snap.docs.map(
-d=>({
-id:d.id,
-...d.data()
-})
-);
+    /* Booking display */
+
+    $("customerBookingList").innerHTML =
+
+      bookings.length
+
+      ?
+
+      bookings
+      .slice()
+      .reverse()
+      .map(x => `
+
+        <div class="list">
+
+          <div class="row">
+
+            <b>
+              ${escapeHtml(x.service || "Service")}
+            </b>
+
+            <span
+              class="badge ${String(
+                x.status || "Pending"
+              ).toLowerCase()}"
+            >
+              ${escapeHtml(
+                x.status || "Pending"
+              )}
+            </span>
+
+          </div>
 
 
-$("customerBookingCount")
-.textContent=
-bookings.length;
+          <div style="margin-top:8px">
+
+            💰 Price:
+            <b>
+              ₹${Number(x.price || 0)}
+            </b>
+
+          </div>
 
 
-$("customerBookingList")
-.innerHTML=
-bookings.length
+          <div class="muted">
 
-?
+            📅 ${x.date || ""}
 
-bookings
-.slice()
-.reverse()
-.map(
-x=>`
+            • 
 
-<div class="list">
+            ⏰ ${x.time || ""}
 
-<div class="row">
+          </div>
 
-<b>
-${escapeHtml(x.service)}
-</b>
 
-<span
-class="badge ${String(x.status).toLowerCase()}"
->
-${escapeHtml(x.status)}
-</span>
+          ${
+            x.status === "Completed"
 
-</div>
+            ?
 
-<div>
-₹${Number(x.price||0)}
-</div>
+            `
+            <button
+              class="btn gold"
+              style="margin-top:9px"
+              onclick="giveRating(
+                '${x.ownerUid}',
+                '${x.id}'
+              )"
+            >
+              ⭐ Rate & Review
+            </button>
+            `
 
-<div class="muted">
-${x.date||""}
-•
-${x.time||""}
-</div>
+            :
 
-${
-x.status==="Completed"
+            ""
+          }
 
-?
+        </div>
 
-`
-<button
-class="btn gold"
-style="margin-top:9px"
-onclick="giveRating(
-'${x.ownerUid}',
-'${x.id}'
-)"
->
-⭐ Rate & Review
-</button>
-`
+      `)
+      .join("")
 
-:
+      :
 
-""
+      `
+      <div class="empty">
+
+        <div style="font-size:35px">
+          📅
+        </div>
+
+        <b>
+          Abhi koi booking nahi hai
+        </b>
+
+        <p class="muted">
+          Salon book karne ke baad
+          booking yahan dikhegi.
+        </p>
+
+      </div>
+      `;
+
+  }
+
+  catch(e){
+
+    console.error(
+      "Customer bookings error:",
+      e
+    );
+
+    $("customerBookingList").innerHTML = `
+
+      <div class="empty">
+
+        <b>
+          Booking load nahi ho rahi
+        </b>
+
+        <p class="error">
+          ${escapeHtml(e.message)}
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
 }
-
-</div>
-
-`
-)
-.join("")
-
-:
-
-`<div class="empty">
-Abhi koi booking nahi hai.
-</div>`;
-
-}
-catch(e){
-
-$("customerBookingList")
-.innerHTML=
-`<div class="empty">
-Bookings load nahi hui.
-</div>`;
-
-}
-
-}
-
 
 /* ================= RATING ================= */
 
