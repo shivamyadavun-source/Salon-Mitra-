@@ -4,144 +4,1143 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Salon Mitra</title>
+
 <style>
 :root{--gold:#b58a3a;--dark:#171717;--bg:#f7f4ee;--card:#fff}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#222}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#222}
 header{background:var(--dark);color:#fff;padding:22px 18px;border-bottom:3px solid var(--gold)}
-header h1{margin:0;color:#e1bd72} header p{margin:5px 0 0;color:#ddd}
+header h1{margin:0;color:#e1bd72}
+header p{margin:5px 0 0;color:#ddd}
 nav{display:flex;gap:6px;overflow:auto;background:#fff;padding:10px;position:sticky;top:0;z-index:2;border-bottom:1px solid #ddd}
 nav button{border:0;background:#eee;padding:10px 13px;border-radius:20px;white-space:nowrap}
 nav button.active{background:var(--dark);color:#fff}
-main{padding:16px;max-width:900px;margin:auto}.screen{display:none}.screen.active{display:block}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{background:var(--card);padding:16px;border-radius:14px;box-shadow:0 2px 8px #00000012}
-.metric{font-size:24px;font-weight:bold;margin-top:7px}.muted{color:#777;font-size:13px}
+main{padding:16px;max-width:900px;margin:auto}
+.screen{display:none}
+.screen.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{background:var(--card);padding:16px;border-radius:14px;box-shadow:0 2px 8px #00000012}
+.metric{font-size:24px;font-weight:bold;margin-top:7px}
+.muted{color:#777;font-size:13px}
 .row{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:10px 0}
 input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:9px;margin:5px 0 10px}
-.btn{border:0;background:var(--dark);color:#fff;padding:11px 15px;border-radius:9px}.gold{background:var(--gold)}
+.btn{border:0;background:var(--dark);color:#fff;padding:11px 15px;border-radius:9px}
+.gold{background:var(--gold)}
 .list{background:#fff;padding:12px;border-radius:10px;margin:8px 0;border:1px solid #eee}
 h2{margin-top:8px}
-@media(min-width:650px){.grid{grid-template-columns:repeat(4,1fr)}}
+.error{color:#b00020;font-size:14px;margin:8px 0}
+#app{display:none}
+.auth-box{max-width:430px;margin:40px auto;padding:16px}
+@media(min-width:650px){
+.grid{grid-template-columns:repeat(4,1fr)}
+}
 </style>
-<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#171717"></head>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#171717">
+</head>
+
 <body>
-<header><h1>Salon Mitra</h1><p>Chhote Salon, Badi Pehchaan ✂️</p></header>
-<nav id="nav">
-<button data-s="home" class="active">🏠 Home</button><button data-s="appointments">📅 Booking</button>
-<button data-s="customers">👥 Customers</button><button data-s="services">✂️ Services</button>
-<button data-s="income">💰 Income</button>
-</nav>
-<main>
-<section id="home" class="screen active">
-<h2>Dashboard</h2><div class="grid">
-<div class="card"><div class="muted">Today's Appointments</div><div class="metric" id="mAppointments">0</div></div>
-<div class="card"><div class="muted">Today's Income</div><div class="metric">₹<span id="mIncome">0</span></div></div>
-<div class="card"><div class="muted">Customers</div><div class="metric" id="mCustomers">0</div></div>
-<div class="card"><div class="muted">Services</div><div class="metric" id="mServices">0</div></div>
+
+<!-- LOGIN / SIGNUP -->
+<section id="authScreen" class="auth-box">
+
+<div class="card">
+
+<h1 style="color:#b58a3a;margin-top:0">
+Salon Mitra ✂️
+</h1>
+
+<p class="muted">
+Apna account banakar app use karein.
+</p>
+
+<!-- SIGNUP -->
+<div id="signupBox">
+
+<h2>Signup</h2>
+
+<input
+id="signupEmail"
+type="email"
+placeholder="Email"
+>
+
+<input
+id="signupPassword"
+type="password"
+placeholder="Password (6+ characters)"
+>
+
+<button
+class="btn gold"
+style="width:100%"
+id="signupBtn"
+>
+Create Account
+</button>
+
+<p id="signupError" class="error"></p>
+
+<p class="muted">
+Account pehle se hai?
+
+<button
+class="btn"
+id="showLogin"
+style="padding:6px 10px"
+>
+Login
+</button>
+</p>
+
 </div>
-<h3>Quick Actions</h3><button class="btn gold" onclick="show('appointments')">+ Add Appointment</button>
-<button class="btn" onclick="show('customers')">+ Add Customer</button>
+
+
+<!-- LOGIN -->
+<div id="loginBox" style="display:none">
+
+<h2>Login</h2>
+
+<input
+id="loginEmail"
+type="email"
+placeholder="Email"
+>
+
+<input
+id="loginPassword"
+type="password"
+placeholder="Password"
+>
+
+<button
+class="btn gold"
+style="width:100%"
+id="loginBtn"
+>
+Login
+</button>
+
+<p id="loginError" class="error"></p>
+
+<p class="muted">
+Naya account banana hai?
+
+<button
+class="btn"
+id="showSignup"
+style="padding:6px 10px"
+>
+Signup
+</button>
+</p>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="appointments" class="screen"><h2>Appointments</h2>
-<div class="card"><input id="aName" placeholder="Customer name"><input id="aDate" type="date"><input id="aTime" type="time">
-<select id="aService"></select><button class="btn" onclick="addAppointment()">Save Appointment</button></div>
-<div id="appointmentList"></div></section>
 
-<section id="customers" class="screen"><h2>Customers</h2>
-<div class="card"><input id="cName" placeholder="Customer name"><input id="cPhone" placeholder="Mobile number" inputmode="numeric">
-<button class="btn" onclick="addCustomer()">Save Customer</button></div><div id="customerList"></div></section>
+<!-- MAIN APP -->
+<div id="app">
 
-<section id="services" class="screen"><h2>Services</h2>
-<div class="card"><input id="sName" placeholder="Service name"><input id="sPrice" type="number" placeholder="Price (₹)">
-<button class="btn" onclick="addService()">Save Service</button></div><div id="serviceList"></div></section>
+<header>
 
-<section id="income" class="screen"><h2>Income</h2>
-<div class="card"><div class="muted">Total recorded income</div><div class="metric">₹<span id="totalIncome">0</span></div>
-<p class="muted">Prototype version: income is automatically added when an appointment is marked completed.</p></div>
-<div id="incomeList"></div></section>
+<div class="row" style="margin:0">
+
+<div>
+<h1>Salon Mitra</h1>
+<p>Chhote Salon, Badi Pehchaan ✂️</p>
+</div>
+
+<button
+class="btn"
+id="logoutBtn"
+>
+Logout
+</button>
+
+</div>
+
+<div
+id="userEmail"
+class="muted"
+style="color:#ddd;margin-top:8px"
+></div>
+
+</header>
+
+
+<nav id="nav">
+
+<button data-s="home" class="active">
+🏠 Home
+</button>
+
+<button data-s="appointments">
+📅 Booking
+</button>
+
+<button data-s="customers">
+👥 Customers
+</button>
+
+<button data-s="services">
+✂️ Services
+</button>
+
+<button data-s="income">
+💰 Income
+</button>
+
+</nav>
+
+
+<main>
+
+<!-- HOME -->
+
+<section id="home" class="screen active">
+
+<h2>Dashboard</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="muted">
+Today's Appointments
+</div>
+<div class="metric" id="mAppointments">
+0
+</div>
+</div>
+
+<div class="card">
+<div class="muted">
+Today's Income
+</div>
+<div class="metric">
+₹<span id="mIncome">0</span>
+</div>
+</div>
+
+<div class="card">
+<div class="muted">
+Customers
+</div>
+<div class="metric" id="mCustomers">
+0
+</div>
+</div>
+
+<div class="card">
+<div class="muted">
+Services
+</div>
+<div class="metric" id="mServices">
+0
+</div>
+</div>
+
+</div>
+
+<h3>Quick Actions</h3>
+
+<button
+class="btn gold"
+onclick="show('appointments')"
+>
++ Add Appointment
+</button>
+
+<button
+class="btn"
+onclick="show('customers')"
+>
++ Add Customer
+</button>
+
+</section>
+
+
+<!-- APPOINTMENTS -->
+
+<section id="appointments" class="screen">
+
+<h2>Appointments</h2>
+
+<div class="card">
+
+<input
+id="aName"
+placeholder="Customer name"
+>
+
+<input
+id="aDate"
+type="date"
+>
+
+<input
+id="aTime"
+type="time"
+>
+
+<select id="aService"></select>
+
+<button
+class="btn"
+onclick="addAppointment()"
+>
+Save Appointment
+</button>
+
+</div>
+
+<div id="appointmentList"></div>
+
+</section>
+
+
+<!-- CUSTOMERS -->
+
+<section id="customers" class="screen">
+
+<h2>Customers</h2>
+
+<div class="card">
+
+<input
+id="cName"
+placeholder="Customer name"
+>
+
+<input
+id="cPhone"
+placeholder="Mobile number"
+inputmode="numeric"
+>
+
+<button
+class="btn"
+onclick="addCustomer()"
+>
+Save Customer
+</button>
+
+</div>
+
+<div id="customerList"></div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section id="services" class="screen">
+
+<h2>Services</h2>
+
+<div class="card">
+
+<input
+id="sName"
+placeholder="Service name"
+>
+
+<input
+id="sPrice"
+type="number"
+placeholder="Price (₹)"
+>
+
+<button
+class="btn"
+onclick="addService()"
+>
+Save Service
+</button>
+
+</div>
+
+<div id="serviceList"></div>
+
+</section>
+
+
+<!-- INCOME -->
+
+<section id="income" class="screen">
+
+<h2>Income</h2>
+
+<div class="card">
+
+<div class="muted">
+Total recorded income
+</div>
+
+<div class="metric">
+₹<span id="totalIncome">0</span>
+</div>
+
+<p class="muted">
+Income is automatically added when an appointment is marked completed.
+</p>
+
+</div>
+
+<div id="incomeList"></div>
+
+</section>
+
 </main>
+
+</div>
+
+
+<!-- APP DATA -->
 <script>
-const key='salonMitraData';
-let d=JSON.parse(localStorage.getItem(key)||'{"customers":[],"services":[{"name":"Haircut","price":100},{"name":"Beard Trim","price":80},{"name":"Hair Wash","price":70}],"appointments":[],"income":[]}');
-function save(){localStorage.setItem(key,JSON.stringify(d));render()}
-function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.s===id))}
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>show(b.dataset.s));
-async function addCustomer(){
-  let n = cName.value.trim();
-  let p = cPhone.value.trim();
 
-  if(!n){
-    return alert("Customer name डालें");
-  }
+const key = 'salonMitraData';
 
-  try{
-    await window.addCustomerToFirebase(n, p);
+let d = JSON.parse(
+localStorage.getItem(key) ||
+'{"customers":[],"services":[{"name":"Haircut","price":100},{"name":"Beard Trim","price":80},{"name":"Hair Wash","price":70}],"appointments":[],"income":[]}'
+);
 
-    d.customers.push({
-      name: n,
-      phone: p
-    });
 
-    save();
+function save(){
 
-    cName.value = "";
-    cPhone.value = "";
+localStorage.setItem(
+key,
+JSON.stringify(d)
+);
 
-    alert("Customer Firebase में save हो गया ✅");
-  }catch(error){
-    console.error(error);
-    alert("Customer save नहीं हुआ: " + error.message);
-  }
-}
-function addService(){let n=sName.value.trim(),p=Number(sPrice.value);if(!n||!p)return alert('Service और price डालें');d.services.push({name:n,price:p});sName.value='';sPrice.value='';save()}
-function addAppointment(){let n=aName.value.trim(),date=aDate.value,time=aTime.value,sv=d.services[Number(aService.value)];if(!n||!date||!time||!sv)return alert('सारी जानकारी भरें');d.appointments.push({name:n,date,time,service:sv.name,price:sv.price,status:'Pending'});aName.value='';save()}
-function complete(i){if(d.appointments[i].status!=='Completed'){d.appointments[i].status='Completed';d.income.push({date:d.appointments[i].date,amount:d.appointments[i].price,name:d.appointments[i].name});save()}}
-function render(){
-aService.innerHTML=d.services.map((s,i)=>`<option value="${i}">${s.name} — ₹${s.price}</option>`).join('');
-mCustomers.textContent=d.customers.length;mServices.textContent=d.services.length;
-let today=new Date().toISOString().slice(0,10),ta=d.appointments.filter(x=>x.date===today);
-mAppointments.textContent=ta.length;mIncome.textContent=d.income.filter(x=>x.date===today).reduce((a,x)=>a+x.amount,0);
-totalIncome.textContent=d.income.reduce((a,x)=>a+x.amount,0);
-customerList.innerHTML=d.customers.map(x=>`<div class="list"><b>${x.name}</b><br><span class="muted">${x.phone||'No phone'}</span></div>`).join('')||'<p class="muted">No customers yet.</p>';
-serviceList.innerHTML=d.services.map(x=>`<div class="list"><b>${x.name}</b><span style="float:right">₹${x.price}</span></div>`).join('');
-appointmentList.innerHTML=d.appointments.slice().reverse().map((x,ri)=>{let i=d.appointments.length-1-ri;return `<div class="list"><b>${x.name}</b> — ${x.service}<br><span class="muted">${x.date} • ${x.time} • ₹${x.price}</span><div class="row"><span>${x.status}</span>${x.status!=='Completed'?`<button class="btn gold" onclick="complete(${i})">Completed</button>`:''}</div></div>`}).join('')||'<p class="muted">No appointments yet.</p>';
-incomeList.innerHTML=d.income.slice().reverse().map(x=>`<div class="list">${x.name}<span style="float:right">₹${x.amount}</span><br><span class="muted">${x.date}</span></div>`).join('')||'<p class="muted">No income recorded yet.</p>';
-}
 render();
+
+}
+
+
+function show(id){
+
+document
+.querySelectorAll('#app .screen')
+.forEach(x=>x.classList.remove('active'));
+
+document
+.getElementById(id)
+.classList.add('active');
+
+document
+.querySelectorAll('#nav button')
+.forEach(x=>
+x.classList.toggle(
+'active',
+x.dataset.s===id
+)
+);
+
+}
+
+
+document
+.querySelectorAll('#nav button')
+.forEach(
+b=>b.onclick=()=>show(b.dataset.s)
+);
+
+
+async function addCustomer(){
+
+let n =
+document.getElementById('cName').value.trim();
+
+let p =
+document.getElementById('cPhone').value.trim();
+
+if(!n){
+
+alert('Customer name डालें');
+
+return;
+
+}
+
+try{
+
+if(!window.currentUser){
+
+throw new Error(
+'Pehle login karein'
+);
+
+}
+
+await window.addCustomerToFirebase(
+n,
+p
+);
+
+d.customers.push({
+
+name:n,
+phone:p
+
+});
+
+document.getElementById('cName').value='';
+document.getElementById('cPhone').value='';
+
+save();
+
+alert(
+'Customer Firebase में save हो गया ✅'
+);
+
+}catch(error){
+
+console.error(error);
+
+alert(
+'Customer save नहीं हुआ: ' +
+error.message
+);
+
+}
+
+}
+
+
+function addService(){
+
+let n =
+document.getElementById('sName').value.trim();
+
+let p =
+Number(
+document.getElementById('sPrice').value
+);
+
+if(!n || !p){
+
+alert(
+'Service और price डालें'
+);
+
+return;
+
+}
+
+d.services.push({
+
+name:n,
+price:p
+
+});
+
+document.getElementById('sName').value='';
+document.getElementById('sPrice').value='';
+
+save();
+
+}
+
+
+function addAppointment(){
+
+let n =
+document.getElementById('aName').value.trim();
+
+let date =
+document.getElementById('aDate').value;
+
+let time =
+document.getElementById('aTime').value;
+
+let serviceSelect =
+document.getElementById('aService');
+
+let sv =
+d.services[
+Number(serviceSelect.value)
+];
+
+if(!n || !date || !time || !sv){
+
+alert(
+'सारी जानकारी भरें'
+);
+
+return;
+
+}
+
+d.appointments.push({
+
+name:n,
+date:date,
+time:time,
+service:sv.name,
+price:sv.price,
+status:'Pending'
+
+});
+
+document.getElementById('aName').value='';
+
+save();
+
+}
+
+
+function complete(i){
+
+if(
+d.appointments[i].status !== 'Completed'
+){
+
+d.appointments[i].status =
+'Completed';
+
+d.income.push({
+
+date:d.appointments[i].date,
+amount:d.appointments[i].price,
+name:d.appointments[i].name
+
+});
+
+save();
+
+}
+
+}
+
+
+function render(){
+
+const serviceSelect =
+document.getElementById('aService');
+
+serviceSelect.innerHTML =
+d.services.map(
+(s,i)=>
+`<option value="${i}">
+${s.name} — ₹${s.price}
+</option>`
+).join('');
+
+
+document.getElementById('mCustomers')
+.textContent =
+d.customers.length;
+
+
+document.getElementById('mServices')
+.textContent =
+d.services.length;
+
+
+let today =
+new Date()
+.toISOString()
+.slice(0,10);
+
+
+let ta =
+d.appointments.filter(
+x=>x.date===today
+);
+
+
+document.getElementById('mAppointments')
+.textContent =
+ta.length;
+
+
+document.getElementById('mIncome')
+.textContent =
+d.income
+.filter(x=>x.date===today)
+.reduce(
+(a,x)=>a+x.amount,
+0
+);
+
+
+document.getElementById('totalIncome')
+.textContent =
+d.income.reduce(
+(a,x)=>a+x.amount,
+0
+);
+
+
+document.getElementById('customerList')
+.innerHTML =
+d.customers.map(
+x=>
+`<div class="list">
+<b>${x.name}</b>
+<br>
+<span class="muted">
+${x.phone || 'No phone'}
+</span>
+</div>`
+).join('')
+||
+'<p class="muted">No customers yet.</p>';
+
+
+document.getElementById('serviceList')
+.innerHTML =
+d.services.map(
+x=>
+`<div class="list">
+<b>${x.name}</b>
+<span style="float:right">
+₹${x.price}
+</span>
+</div>`
+).join('');
+
+
+document.getElementById('appointmentList')
+.innerHTML =
+d.appointments
+.slice()
+.reverse()
+.map(
+(x,ri)=>{
+
+let i =
+d.appointments.length-1-ri;
+
+return `
+<div class="list">
+
+<b>${x.name}</b>
+— ${x.service}
+
+<br>
+
+<span class="muted">
+${x.date} • ${x.time} • ₹${x.price}
+</span>
+
+<div class="row">
+
+<span>${x.status}</span>
+
+${
+x.status !== 'Completed'
+?
+`<button
+class="btn gold"
+onclick="complete(${i})">
+Completed
+</button>`
+:''
+}
+
+</div>
+
+</div>
+`;
+
+}
+)
+.join('')
+||
+'<p class="muted">No appointments yet.</p>';
+
+
+document.getElementById('incomeList')
+.innerHTML =
+d.income
+.slice()
+.reverse()
+.map(
+x=>
+`<div class="list">
+
+${x.name}
+
+<span style="float:right">
+₹${x.amount}
+</span>
+
+<br>
+
+<span class="muted">
+${x.date}
+</span>
+
+</div>`
+)
+.join('')
+||
+'<p class="muted">No income recorded yet.</p>';
+
+}
+
+
+render();
+
 </script>
-<script>
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
-</script><script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-  import { getAuth } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBfSOY5P1uguVtRb2gdQX9QxSn32rUDWq4",
-    authDomain: "salon-mitra-1d84c.firebaseapp.com",
-    projectId: "salon-mitra-1d84c",
-    storageBucket: "salon-mitra-1d84c.firebasestorage.app",
-    messagingSenderId: "178446991322",
-    appId: "1:178446991322:web:ceff70d988be47aa298ae3"
-  };
 
-  const app = initializeApp(firebaseConfig);
+<!-- FIREBASE -->
+<script type="module">
 
-  const db = getFirestore(app);
-  window.addCustomerToFirebase = async function(name, phone) {
-  await addDoc(collection(db, "users"), {
-    name: name,
-    phone: phone,
-    role: "user",
-    createdAt: new Date()
-  });
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+import {
+getFirestore,
+collection,
+addDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+onAuthStateChanged,
+signOut
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyBfSOY5P1uguVtRb2gdQX9QxSn32rUDWq4",
+
+authDomain:
+"salon-mitra-1d84c.firebaseapp.com",
+
+projectId:
+"salon-mitra-1d84c",
+
+storageBucket:
+"salon-mitra-1d84c.firebasestorage.app",
+
+messagingSenderId:
+"178446991322",
+
+appId:
+"1:178446991322:web:ceff70d988be47aa298ae3"
+
 };
-  const auth = getAuth(app);
 
-  // Make Firebase available to the Salon Mitra app
-  window.firebaseApp = app;
-  window.db = db;
-  window.auth = auth;
 
-  console.log("Salon Mitra Firebase connected successfully!");
-</script></body></html>
+const firebaseApp =
+initializeApp(firebaseConfig);
+
+
+const db =
+getFirestore(firebaseApp);
+
+
+const auth =
+getAuth(firebaseApp);
+
+
+window.firebaseApp =
+firebaseApp;
+
+window.db =
+db;
+
+window.auth =
+auth;
+
+window.currentUser =
+null;
+
+
+window.addCustomerToFirebase =
+async function(name,phone){
+
+if(!auth.currentUser){
+
+throw new Error(
+'Pehle login karein'
+);
+
+}
+
+await addDoc(
+collection(db,"users"),
+{
+
+name:name,
+
+phone:phone,
+
+role:"customer",
+
+ownerUid:
+auth.currentUser.uid,
+
+createdAt:new Date()
+
+}
+
+);
+
+};
+
+
+function firebaseMessage(error){
+
+const map = {
+
+"auth/email-already-in-use":
+"Ye email pehle se registered hai.",
+
+"auth/invalid-email":
+"Email sahi nahi hai.",
+
+"auth/weak-password":
+"Password kam se kam 6 characters ka hona chahiye.",
+
+"auth/invalid-credential":
+"Email ya password galat hai.",
+
+"auth/user-not-found":
+"Is email ka account nahi mila.",
+
+"auth/wrong-password":
+"Password galat hai."
+
+};
+
+return map[error.code] ||
+error.message;
+
+}
+
+
+document.getElementById(
+'showLogin'
+).onclick=function(){
+
+document.getElementById(
+'signupBox'
+).style.display='none';
+
+document.getElementById(
+'loginBox'
+).style.display='block';
+
+};
+
+
+document.getElementById(
+'showSignup'
+).onclick=function(){
+
+document.getElementById(
+'loginBox'
+).style.display='none';
+
+document.getElementById(
+'signupBox'
+).style.display='block';
+
+};
+
+
+document.getElementById(
+'signupBtn'
+).onclick=async function(){
+
+const errorBox =
+document.getElementById(
+'signupError'
+);
+
+errorBox.textContent='';
+
+
+const email =
+document.getElementById(
+'signupEmail'
+).value.trim();
+
+
+const password =
+document.getElementById(
+'signupPassword'
+).value;
+
+
+if(!email || !password){
+
+errorBox.textContent =
+'Email aur password bhariye.';
+
+return;
+
+}
+
+
+try{
+
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+}catch(e){
+
+errorBox.textContent =
+firebaseMessage(e);
+
+}
+
+};
+
+
+document.getElementById(
+'loginBtn'
+).onclick=async function(){
+
+const errorBox =
+document.getElementById(
+'loginError'
+);
+
+errorBox.textContent='';
+
+
+const email =
+document.getElementById(
+'loginEmail'
+).value.trim();
+
+
+const password =
+document.getElementById(
+'loginPassword'
+).value;
+
+
+if(!email || !password){
+
+errorBox.textContent =
+'Email aur password bhariye.';
+
+return;
+
+}
+
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+}catch(e){
+
+errorBox.textContent =
+firebaseMessage(e);
+
+}
+
+};
+
+
+document.getElementById(
+'logoutBtn'
+).onclick=async function(){
+
+await signOut(auth);
+
+};
+
+
+onAuthStateChanged(
+auth,
+function(user){
+
+window.currentUser =
+user;
+
+
+const authScreen =
+document.getElementById(
+'authScreen'
+);
+
+
+const appElement =
+document.getElementById(
+'app'
+);
+
+
+if(user){
+
+authScreen.style.display='none';
+
+appElement.style.display='block';
+
+document.getElementById(
+'userEmail'
+).textContent =
+"Logged in: " + user.email;
+
+render();
+
+}else{
+
+appElement.style.display='none';
+
+authScreen.style.display='block';
+
+}
+
+});
+
+
+console.log(
+"Salon Mitra Firebase + Authentication connected"
+);
+
+</script>
+
+
+<script>
+
+if(
+'serviceWorker' in navigator
+){
+
+navigator.serviceWorker.register(
+'sw.js'
+);
+
+}
+
+</script>
+
+</body>
+</html>
