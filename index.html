@@ -66,7 +66,33 @@ let d=JSON.parse(localStorage.getItem(key)||'{"customers":[],"services":[{"name"
 function save(){localStorage.setItem(key,JSON.stringify(d));render()}
 function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.s===id))}
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>show(b.dataset.s));
-function addCustomer(){let n=cName.value.trim(),p=cPhone.value.trim();if(!n)return alert('Customer name डालें');d.customers.push({name:n,phone:p});cName.value='';cPhone.value='';save()}
+async function addCustomer(){
+  let n = cName.value.trim();
+  let p = cPhone.value.trim();
+
+  if(!n){
+    return alert("Customer name डालें");
+  }
+
+  try{
+    await window.addCustomerToFirebase(n, p);
+
+    d.customers.push({
+      name: n,
+      phone: p
+    });
+
+    save();
+
+    cName.value = "";
+    cPhone.value = "";
+
+    alert("Customer Firebase में save हो गया ✅");
+  }catch(error){
+    console.error(error);
+    alert("Customer save नहीं हुआ: " + error.message);
+  }
+}
 function addService(){let n=sName.value.trim(),p=Number(sPrice.value);if(!n||!p)return alert('Service और price डालें');d.services.push({name:n,price:p});sName.value='';sPrice.value='';save()}
 function addAppointment(){let n=aName.value.trim(),date=aDate.value,time=aTime.value,sv=d.services[Number(aService.value)];if(!n||!date||!time||!sv)return alert('सारी जानकारी भरें');d.appointments.push({name:n,date,time,service:sv.name,price:sv.price,status:'Pending'});aName.value='';save()}
 function complete(i){if(d.appointments[i].status!=='Completed'){d.appointments[i].status='Completed';d.income.push({date:d.appointments[i].date,amount:d.appointments[i].price,name:d.appointments[i].name});save()}}
@@ -87,7 +113,7 @@ render();
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 </script><script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
   import { getAuth } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
   const firebaseConfig = {
@@ -102,6 +128,14 @@ if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
   const app = initializeApp(firebaseConfig);
 
   const db = getFirestore(app);
+  window.addCustomerToFirebase = async function(name, phone) {
+  await addDoc(collection(db, "users"), {
+    name: name,
+    phone: phone,
+    role: "user",
+    createdAt: new Date()
+  });
+};
   const auth = getAuth(app);
 
   // Make Firebase available to the Salon Mitra app
