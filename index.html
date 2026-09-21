@@ -85,4 +85,29 @@ render();
 </script>
 <script>
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+</script><script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBfSOY5P1uguVtRb2gdQX9QxSn32rUDWq4",
+    authDomain: "salon-mitra-1d84c.firebaseapp.com",
+    projectId: "salon-mitra-1d84c",
+    storageBucket: "salon-mitra-1d84c.firebasestorage.app",
+    messagingSenderId: "178446991322",
+    appId: "1:178446991322:web:ceff70d988be47aa298ae3"
+  };
+
+  const app = initializeApp(firebaseConfig);
+
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  // Make Firebase available to the Salon Mitra app
+  window.firebaseApp = app;
+  window.db = db;
+  window.auth = auth;
+
+  console.log("Salon Mitra Firebase connected successfully!");
 </script></body></html>
